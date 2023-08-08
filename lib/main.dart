@@ -14,14 +14,31 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
       create: (context) => ThemeProvider(),
-      child: Builder(
-        builder: (context) {
-          return MaterialApp(
+      child: Builder(builder: (context) {
+        return TextFieldUnfocus(
+          child: MaterialApp(
             theme: context.watch<ThemeProvider>().theme,
             home: const SplashScreen(),
-          );
-        }
-      ),
+          ),
+        );
+      }),
     );
   }
+}
+
+class TextFieldUnfocus extends StatelessWidget {
+  const TextFieldUnfocus({super.key, required this.child});
+  final Widget child;
+  @override
+  Widget build(BuildContext context) => GestureDetector(
+        behavior: HitTestBehavior.translucent,
+        onTap: () {
+          final FocusScopeNode currentFocus = FocusScope.of(context);
+          if (!currentFocus.hasPrimaryFocus &&
+              currentFocus.focusedChild != null) {
+            currentFocus.focusedChild!.unfocus();
+          }
+        },
+        child: child,
+      );
 }
