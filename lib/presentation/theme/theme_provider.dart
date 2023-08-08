@@ -10,6 +10,9 @@ class ThemeProvider extends ChangeNotifier {
       backgroundColor: AppColors.darkBgColor,
       elevation: 0,
     ),
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+      backgroundColor: AppColors.darkBgColor,
+    ),
   );
 
   void changeTheme() {
@@ -22,6 +25,10 @@ class ThemeProvider extends ChangeNotifier {
         backgroundColor:
             isDarkTheme ? AppColors.darkBgColor : AppColors.lightBgColor,
         elevation: 0,
+      ),
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor:
+            isDarkTheme ? AppColors.darkBgColor : AppColors.lightBgColor,
       ),
     );
 
