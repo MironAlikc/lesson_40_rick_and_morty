@@ -11,7 +11,9 @@ class DioSettings {
     BaseOptions(
       baseUrl: 'https://rickandmortyapi.com/api/',
       contentType: 'application/json',
-      headers: {'Accept': 'application/json'},
+      headers: {
+        'Accept': 'application/json',
+      },
       connectTimeout: const Duration(seconds: 20),
       receiveTimeout: const Duration(seconds: 20),
     ),
