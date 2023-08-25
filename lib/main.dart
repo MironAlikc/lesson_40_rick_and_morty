@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:lesson_40_rick_and_morty/data/repositories/dio_settings.dart';
 import 'package:lesson_40_rick_and_morty/data/repositories/get_chars_repo.dart';
+import 'package:lesson_40_rick_and_morty/data/repositories/get_episode_data_repo.dart';
 import 'package:lesson_40_rick_and_morty/presentation/blocs/chars_bloc/chars_bloc.dart';
+import 'package:lesson_40_rick_and_morty/presentation/blocs/eposode_bloc/eposode_bloc.dart';
 import 'package:lesson_40_rick_and_morty/presentation/screens/splash_screen.dart';
 import 'package:lesson_40_rick_and_morty/presentation/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
@@ -30,12 +32,22 @@ class MyApp extends StatelessWidget {
                   dio: RepositoryProvider.of<DioSettings>(context).dio,
                 ),
               ),
+              RepositoryProvider(
+                create: (context) => GetEpisodeDataRepo(
+                  dio: RepositoryProvider.of<DioSettings>(context).dio,
+                ),
+              ),
             ],
             child: MultiBlocProvider(
               providers: [
                 BlocProvider(
                   create: (context) => CharsBloc(
                     repo: RepositoryProvider.of<GetCharsRepo>(context),
+                  ),
+                ),
+                BlocProvider(
+                  create: (context) => EposodeBloc(
+                    repo: RepositoryProvider.of<GetEpisodeDataRepo>(context),
                   ),
                 ),
               ],
