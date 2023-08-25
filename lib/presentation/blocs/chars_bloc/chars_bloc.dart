@@ -13,6 +13,8 @@ class CharsBloc extends Bloc<CharsEvent, CharsState> {
         try {
           final model = await repo.getData(
             name: event.name,
+            gender: event.gender,
+            status: event.status,
           );
           emit(
             CharsSuccess(model: model),
